@@ -1,0 +1,39 @@
+                              FamaMonetae
+
+About
+-----
+
+FamaMonetae decodes data stored as Bitcoin addresses in a Bitcoin
+transaction.
+
+FamaMonetae depends on the python-bitcoinlib and python-bitcoinrpc
+libraries.
+
+Execution
+---------
+
+Adjust the username, password, server, and port variables within the
+famamonetae.py file in order to access the desired HTTP JSON-RPC Bitcoin
+server.
+
+Supply the desired transaction id as an argument to FamaMonetae. For
+example (where '<txid>' is the transaction id):
+
+    # ./famamonetae.py <txid>
+
+All output Bitcoin addresses in the specified Bitcoin transaction will
+be decoded to binary data and written to a file called rumor.dat in the
+current directory.
+
+Licensing
+---------
+
+FamaMonetae is free software released under version 3 of the GNU Affero
+General Public License.
+
+See the file COPYING for copying conditions.
+
+Contact
+-------
+
+William Breathitt Gray <vilhelm.gray@gmail.com>
