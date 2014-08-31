@@ -1,6 +1,5 @@
 #!/usr/bin/python
-# FamaMonetae decodes data stored as Bitcoin addresses in a Bitcoin
-# transaction.
+# FamaMonetae encodes/decodes data via the Bitcoin protocol.
 # Copyright (C) 2014  William Breathitt Gray
 # 
 # This program is free software: you can redistribute it and/or modify

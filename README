@@ -3,8 +3,7 @@
 About
 -----
 
-FamaMonetae decodes data stored as Bitcoin addresses in a Bitcoin
-transaction.
+FamaMonetae encodes/decodes data via the Bitcoin protocol.
 
 FamaMonetae depends on the python-bitcoinlib and python-bitcoinrpc
 libraries.
