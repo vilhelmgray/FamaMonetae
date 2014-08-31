@@ -12,18 +12,31 @@ libraries.
 Execution
 ---------
 
-Adjust the username, password, server, and port variables within the
-famamonetae.py file in order to access the desired HTTP JSON-RPC Bitcoin
-server.
+FamaMonetae provides the hearRumor function to decode a Bitcoin
+transaction to data and save the concatenated data to a file.
 
-Supply the desired transaction id as an argument to FamaMonetae. For
-example (where '<txid>' is the transaction id):
+The hearRumor function takes three string arguments: the Bitcoin
+transaction ID, the url to an HTTP JSON-RPC Bitcoin server, and the
+filepath to store the decoded data.
 
-    # ./famamonetae.py <txid>
+For example, suppose the choosen Bitcoin transaction ID is
+"8881a937a437ff6ce83be3a89d77ea88ee12315f37f7ef0dd3742c30eef92dba" and
+the decoded data should be saved to a file called "rumor.dat" in the
+current directory; a local HTTP JSON-RPC Bitcoin server is located at
+127.0.0.1 on port 8332 and accessed using "user" as the username and
+"pass" as the password. The following Python script will do:
 
-All output Bitcoin addresses in the specified Bitcoin transaction will
-be decoded to binary data and written to a file called rumor.dat in the
-current directory.
+        import famamonetae
+
+        txid = ("8881a937a437ff6ce83be3a89d77ea88"
+                "ee12315f37f7ef0dd3742c30eef92dba")
+        service_url = "http://user:pass@127.0.0.1:8332"
+        filepath = "rumor.dat"
+
+        famamonetae.hearRumor(txid, service_url, filepath)
+
+After executing the Python script, the file "rumor.dat" will contain the
+decoded data.
 
 Licensing
 ---------
