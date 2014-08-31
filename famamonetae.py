@@ -21,24 +21,28 @@ import sys
 from bitcoin import base58
 from bitcoinrpc.authproxy import AuthServiceProxy
 
-username = 'user'
-password = 'pass'
-server = '127.0.0.1'
-port = '8332'
+def hearRumor(txid, service_url, filepath):
+    access = AuthServiceProxy(service_url)
 
-access = AuthServiceProxy('http://'+username+':'+password+'@'+server+':'+port)
+    whispers = hearWhispers(txid, access)
 
-txid = sys.argv[1]
-rawtx = access.getrawtransaction(txid)
-decodedtx = access.decoderawtransaction(rawtx)
+    fp = open(filepath, "wb")
+    for whisper in whispers:
+        fp.write(whisper)
+    
+    fp.close()
 
-vouts = decodedtx['vout']
 
-fp = open("rumor.dat", "wb")
+def hearWhispers(txid, access):
+    rawtx = access.getrawtransaction(txid)
+    decodedtx = access.decoderawtransaction(rawtx)
 
-for vout in vouts:
-    address = vout['scriptPubKey']['addresses'][0]
-    data = base58.decode(address)[1:-4]
-    fp.write(data)
+    vouts = decodedtx['vout']
 
-fp.close()
+    whispers = []
+    for vout in vouts:
+        address = vout['scriptPubKey']['addresses'][0]
+        whisper = base58.decode(address)[1:-4]
+        whispers.append(whisper)
+
+    return whispers
