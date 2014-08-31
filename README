@@ -31,9 +31,9 @@ current directory; a local HTTP JSON-RPC Bitcoin server is located at
         txid = ("8881a937a437ff6ce83be3a89d77ea88"
                 "ee12315f37f7ef0dd3742c30eef92dba")
         service_url = "http://user:pass@127.0.0.1:8332"
-        filepath = "rumor.dat"
+        rumor_file = "rumor.dat"
 
-        famamonetae.hearRumor(txid, service_url, filepath)
+        famamonetae.hearRumor(txid, service_url, rumor_file)
 
 After executing the Python script, the file "rumor.dat" will contain the
 decoded data.

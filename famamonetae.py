@@ -21,12 +21,12 @@ import sys
 from bitcoin import base58
 from bitcoinrpc.authproxy import AuthServiceProxy
 
-def hearRumor(txid, service_url, filepath):
+def hearRumor(txid, service_url, rumor_file):
     access = AuthServiceProxy(service_url)
 
     whispers = hearWhispers(txid, access)
 
-    fp = open(filepath, "wb")
+    fp = open(rumor_file, "wb")
     for whisper in whispers:
         fp.write(whisper)
     
