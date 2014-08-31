@@ -20,6 +20,7 @@
 import sys
 from bitcoin import base58
 from bitcoinrpc.authproxy import AuthServiceProxy
+from hashlib import sha256
 
 def hearRumor(txid, service_url, rumor_file):
     access = AuthServiceProxy(service_url)
@@ -46,3 +47,44 @@ def hearWhispers(txid, access):
         whispers.append(whisper)
 
     return whispers
+
+def speakRumor(rumor_file):
+    fp = open(rumor_file, "rb")
+
+    whispers = []
+    while True:
+        payload_size = 20
+        whisper = fp.read(payload_size)
+
+        whisper_size = len(whisper)
+        if(whisper_size < payload_size):
+            if(whisper_size == 0):
+                break
+            whisper = whisper + (B'\x00')*(payload_size - whisper_size)
+            break
+
+        whispers.append(whisper)
+
+    fp.close()
+
+    addresses = speakWhispers(whispers)
+
+    for address in addresses:
+        print(address)
+
+def speakWhispers(whispers):
+    addresses = []
+    for whisper in whispers:
+        version = B'\x00'
+        data = version + whisper
+
+        first_pass = sha256(data).digest()
+        second_pass = sha256(first_pass).digest()
+        checksum = second_pass[:4]
+
+        cat = data + checksum
+        address = base58.encode(cat)
+
+        addresses.append(address)
+
+    return addresses
