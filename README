@@ -54,6 +54,12 @@ list of Bitcoin addresses which represent the data in the "rumor.dat"
 file. Submitting a Bitcoin transaction with those Bitcoin addresses as
 output addresses will store the encoded data in the Bitcoin blockchain.
 
+It is important to note that the Bitcoin protocol expects an exactly
+20-byte wide payload for each Bitcoin address. Since not all data sizes
+are multiples of 20, FamaMonetae will pad the final payload with null
+bytes if necessary; this means trailing null bytes not part of the
+original data may be present when decoding a Bitcoin transaction.
+
 Licensing
 ---------
 
