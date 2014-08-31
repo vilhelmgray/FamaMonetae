@@ -11,8 +11,9 @@ libraries.
 Execution
 ---------
 
-FamaMonetae provides the hearRumor function to decode a Bitcoin
-transaction to data and save the concatenated data to a file.
+FamaMonetae provides the several functions to encode and decode data
+via the Bitcoin protocol. Bitcoin transactions can be interpreted as
+data encoded as Bitcoin output addresses.
 
 The hearRumor function takes three string arguments: the Bitcoin
 transaction ID, the url to an HTTP JSON-RPC Bitcoin server, and the
@@ -36,6 +37,22 @@ current directory; a local HTTP JSON-RPC Bitcoin server is located at
 
 After executing the Python script, the file "rumor.dat" will contain the
 decoded data.
+
+The speakRumor function takes a single string argument: the filepath to
+data for encoding.
+
+For example, suppose the desired data for encoding is stored in a file
+called "rumor.dat" in the current directory. The following Python script
+will do:
+
+        import famamonetae
+
+        famamonetae.speakRumor("rumor.dat")
+
+After executing the Python script, the standard output should display a
+list of Bitcoin addresses which represent the data in the "rumor.dat"
+file. Submitting a Bitcoin transaction with those Bitcoin addresses as
+output addresses will store the encoded data in the Bitcoin blockchain.
 
 Licensing
 ---------
